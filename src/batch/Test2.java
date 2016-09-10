@@ -1,4 +1,4 @@
-package catchimage;
+package batch;
 
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
@@ -23,6 +23,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class Test2 extends JFrame implements ActionListener {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     JButton button;
     JButton Select;
     JButton btnOK;

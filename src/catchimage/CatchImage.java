@@ -20,38 +20,22 @@ import java.util.regex.Pattern;
  */
 public class CatchImage {
     private String mypath;
-    // 地址
-    // private static final String URL = "https://www.251ee.com/htm/piclist3/";
-    // private static final String URL =
-    // "https://www.251ee.com/htm/pic4/54011.htm";
-    // private static final String URL = "http://www.csdn.net";
+    // 17775
+    private static int nameNumber = 124206;
     // 编码
     private static final String ECODING = "UTF-8";
     // 获取htmlwangye正则
     private static final String HTMLURL_REG = "<a.*href=(.*?)[^>]*?>";
     // 获取Html src路径的正则
-    private static final String HTMLSRC_REG = "/htm/\"?(.*?)(\"|>|\\s+)";
+    // private static final String HTMLSRC_REG = "/Html/\"?(.*?)(\"|>|\\s+)";
+    private static final String HTMLSRC_REG = "/Html/\\d+.html";
     // 获取img标签正则
     private static final String IMGURL_REG = "<img.*src=(.*?)[^>]*?>";
     // 获取src路径的正则
-    // <img src="http://images.csdn.net/20160902/李腾杰_meitu_2_meitu_1.jpg">
-    // [<img src="https://img.pic123456.com/tp/2016/03/cso2xim02yg.jpg" />
-    private static final String IMGSRC_REG = "https:\"?(.*?)(\"|>|\\s+)";
+    private static final String IMGSRC_REG = "/\\S*.jpg";
 
-    // public static void main(String[] args) throws Exception {
-    // Jexample jexample = new Jexample();
-    // mypath = jexample.getPath();
-    // CatchImage cm = new CatchImage();
-    // // 获得html文本内容
-    // String HTML = cm.getHTML(URL);
-    //
-    // // 获取HTML标签
-    // List<String> htmlUrl = cm.getHtmlUrl(HTML);
-    //
-    // List<String> htmlSrc = cm.getHtmlSrc(htmlUrl);
-    // cm.redictToNewHtml(htmlSrc);
-    //
-    // }
+    // private static final String IMGSRC_REG = "https:\"?(.*?)(\"|>|\\s+)";
+    private static final String LOCALPATH = "https://img.pic123456.com";
 
     public String getMypath() {
         return mypath;
@@ -129,7 +113,7 @@ public class CatchImage {
         for (String image : listHtmlUrl) {
             Matcher matcher = Pattern.compile(HTMLSRC_REG).matcher(image);
             while (matcher.find()) {
-                listImgSrc.add(matcher.group().substring(0, matcher.group().length() - 1));
+                listImgSrc.add(matcher.group().substring(0, matcher.group().length()));
             }
         }
         redictToNewHtml(listImgSrc);
@@ -145,7 +129,8 @@ public class CatchImage {
             // 获得html文本内容
             String HTML;
             try {
-                HTML = getHTMLForPrivate("https://www.251ee.com" + urlString);
+                System.out.println("********************************************下载页面：" + LOCALPATH + urlString);
+                HTML = getHTMLForPrivate(LOCALPATH + urlString);
                 // 获取图片标签
                 List<String> imgUrl = getImageUrl(HTML);
                 // 获取图片src地址
@@ -187,7 +172,7 @@ public class CatchImage {
         for (String image : listImageUrl) {
             Matcher matcher = Pattern.compile(IMGSRC_REG).matcher(image);
             while (matcher.find()) {
-                listImgSrc.add(matcher.group().substring(0, matcher.group().length() - 1));
+                listImgSrc.add(matcher.group().substring(0, matcher.group().length()));
             }
         }
         return listImgSrc;
@@ -201,7 +186,7 @@ public class CatchImage {
     private void Download(List<String> listImgSrc) {
         try {
             for (String urlString : listImgSrc) {
-                downloadOneImage(urlString);
+                downloadOneImage(LOCALPATH + urlString);
             }
         } catch (Exception e) {
             System.out.println("下载失败");
@@ -216,10 +201,10 @@ public class CatchImage {
     /**
      * @param args
      */
-    private static int nameNumber = 0;
 
     public void downloadOneImage(String urlString) throws Exception {
 
+        System.out.println("正在下载：" + urlString);
         // new一个URL对象
         URL url = new URL(urlString);
 
@@ -233,7 +218,8 @@ public class CatchImage {
         // 设置请求方式为"GET"
         conn.setRequestMethod("GET");
         // 超时响应时间为5秒
-        conn.setConnectTimeout(5 * 1000);
+        conn.setConnectTimeout(5 * 1000);// 设置连接超时:500ms
+        conn.setReadTimeout(5 * 1000);// 设置读取超时:500ms
         // 通过输入流获取图片数据
         InputStream inStream = conn.getInputStream();
         // 得到图片的二进制数据，以二进制封装得到数据，具有通用性
