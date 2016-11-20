@@ -6,11 +6,11 @@ public class MoveJPG {
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-        for (int i = 63; i < 64; i++) {
+        for (int i = 63; i < 95; i++) {
             for (int j = 2000 * (i - 1) + 1; j <= 2000 * i; j++) {
                 try {
-                    File afile = new File("D:\\yazhou\\" + String.valueOf(j) + ".jpg");
-                    if (afile.renameTo(new File("D:\\yazhou\\" + String.valueOf(i) + "\\" + afile.getName()))) {
+                    File afile = new File("D:\\Asia\\" + String.valueOf(j) + ".jpg");
+                    if (afile.renameTo(new File("D:\\Asia\\" + String.valueOf(i) + "\\" + afile.getName()))) {
                         System.out.println("File is moved successful!");
                     } else {
                         System.out.println("File is failed to move!");
@@ -20,6 +20,7 @@ public class MoveJPG {
                 }
             }
         }
+        // MoveJPG.creatFloder();
 
         // try {
         // File afile = new File("D:\\0.jpg");
@@ -32,12 +33,14 @@ public class MoveJPG {
         // e.printStackTrace();
         // }
 
-        // String dir = "D:\\yazhou\\3";
-        // for (int i = 52; i < 64; i++) {
-        // dir = "D:\\yazhou\\" + String.valueOf(i);
-        // MoveJPG.createDir(dir);
-        // }
+    }
 
+    public static void creatFloder() {
+        String dir = "D:\\Asia\\3";
+        for (int i = 64; i < 95; i++) {
+            dir = "D:\\Asia\\" + String.valueOf(i);
+            MoveJPG.createDir(dir);
+        }
     }
 
     public static boolean createDir(String destDirName) {

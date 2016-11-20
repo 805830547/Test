@@ -12,10 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 /**
- * 
- * 
+ *
+ *
  * @author
- * 
+ *
  */
 public class Jexample implements ActionListener, Runnable {
     private String path;
@@ -68,6 +68,7 @@ public class Jexample implements ActionListener, Runnable {
     /**
      * 时间监听的方法
      */
+    @SuppressWarnings("deprecation")
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub

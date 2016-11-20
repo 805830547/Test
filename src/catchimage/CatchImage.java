@@ -14,14 +14,14 @@ import java.util.regex.Pattern;
 
 /***
  * java抓取网络图片
- * 
+ *
  * @author swinglife
- * 
+ *
  */
 public class CatchImage {
     private String mypath;
     // 17775
-    private static int nameNumber = 124206;
+    private static int nameNumber = 185221;
     // 编码
     private static final String ECODING = "UTF-8";
     // 获取htmlwangye正则
@@ -47,7 +47,7 @@ public class CatchImage {
 
     /***
      * 获取HTML内容
-     * 
+     *
      * @param url
      * @return
      * @throws Exception
@@ -68,7 +68,7 @@ public class CatchImage {
 
     /***
      * 获取HTML内容 return
-     * 
+     *
      * @param url
      * @return
      * @throws Exception
@@ -89,7 +89,7 @@ public class CatchImage {
 
     /***
      * 获取HtmlUrl地址
-     * 
+     *
      * @param HTML
      * @return
      */
@@ -104,7 +104,7 @@ public class CatchImage {
 
     /***
      * 获取HtmlSrc地址
-     * 
+     *
      * @param listImageUrl
      * @return
      */
@@ -121,7 +121,7 @@ public class CatchImage {
 
     /***
      * 跳到不同的页面
-     * 
+     *
      * @param listImgSrc
      */
     private void redictToNewHtml(List<String> listHtmlSrc) {
@@ -148,7 +148,7 @@ public class CatchImage {
 
     /***
      * 获取ImageUrl地址
-     * 
+     *
      * @param HTML
      * @return
      */
@@ -163,7 +163,7 @@ public class CatchImage {
 
     /***
      * 获取ImageSrc地址
-     * 
+     *
      * @param listImageUrl
      * @return
      */
@@ -180,7 +180,7 @@ public class CatchImage {
 
     /***
      * 下载图片
-     * 
+     *
      * @param listImgSrc
      */
     private void Download(List<String> listImgSrc) {
@@ -195,7 +195,7 @@ public class CatchImage {
 
     /**
      * 下载一张网络图片到本地磁盘
-     * 
+     *
      * @param args
      */
     /**
